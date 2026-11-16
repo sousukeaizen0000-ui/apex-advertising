@@ -1,0 +1,152 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101318">
+
+    <title>{% block title %}Apex Advertising{% endblock %}</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png"
+          href="{{ url_for('static', filename='images/apex-logo.png') }}">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Main stylesheet -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+
+<div class="site-shell">
+
+    <!-- HEADER -->
+    <header class="topbar">
+
+        <a class="brand" href="{{ url_for('home') }}">
+            <img
+                src="{{ url_for('static', filename='images/apex-logo.png') }}"
+                class="brand-logo"
+                alt="Apex Advertising"
+            >
+        </a>
+
+        <nav class="desktop-nav">
+
+            <a class="nav-link" href="{{ url_for('home') }}">
+                Home
+            </a>
+
+            <a class="nav-link" href="{{ url_for('home') }}#discover">
+                Discover
+            </a>
+
+            <a class="nav-link"
+               href="{{ url_for('dashboard') if current_user else url_for('login') }}">
+                Member area
+            </a>
+
+            {% if is_admin %}
+            <a class="nav-link" href="{{ url_for('admin') }}">
+                Admin
+            </a>
+            {% endif %}
+
+        </nav>
+
+        <div class="top-actions">
+
+            {% if current_user %}
+
+            <a class="button button-primary"
+               href="{{ url_for('dashboard') }}">
+                Dashboard ↗
+            </a>
+
+            {% else %}
+
+            <a class="button button-primary"
+               href="{{ url_for('login') }}">
+                Login with Discord ↗
+            </a>
+
+            {% endif %}
+
+        </div>
+
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="platform-wrap">
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+
+            {% for category, message in messages %}
+
+                <div class="flash {{ 'error' if category == 'error' else '' }}">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer section-wrap">
+
+        <div class="footer-top">
+
+            <a class="brand" href="{{ url_for('home') }}">
+                <img
+                    src="{{ url_for('static', filename='images/apex-logo.png') }}"
+                    class="brand-logo footer-logo"
+                    alt="Apex Advertising"
+                >
+            </a>
+
+            <p>
+                Helping communities find their next audience.
+            </p>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <span>
+                © {{ current_year }} Apex Advertising.
+            </span>
+
+            <div>
+
+                <a href="{{ url_for('terms') }}">Terms</a>
+
+                <a href="{{ url_for('privacy') }}">Privacy</a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+</div>
+
+
+<!-- JAVASCRIPT -->
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

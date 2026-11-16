@@ -48,14 +48,17 @@
 
     <div class="top-actions">
 
-      <a class="button button-quiet desktop-login"
-         href="{{ url_for('dashboard') if current_user else url_for('login') }}">
-        Member area
-      </a>
+  <a class="button button-primary desktop-login nav-member"
+     href="{{ url_for('dashboard') if current_user else url_for('login') }}">
+    Member area ↗
+  </a>
 
-      <a class="button button-primary desktop-join" href="#contact">
-        Join Apex <span>↗</span>
-      </a>
+  <a class="button button-quiet desktop-join"
+     href="https://discord.gg/ApexAD"
+     target="_blank"
+     rel="noopener noreferrer">
+    Join Discord ↗
+  </a>
 
       <button class="menu-toggle" id="menuToggle"
               aria-label="Open navigation" aria-expanded="false">

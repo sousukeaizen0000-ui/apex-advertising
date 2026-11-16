@@ -82,3 +82,35 @@
     padding: 14px;
     margin-top: 8px;
 }
+/* APEX NAVIGATION BUTTON STYLING */
+
+/* JOIN DISCORD - SOLID ORANGE */
+.top-actions a.desktop-join {
+    background: #f08f5b !important;
+    color: #101318 !important;
+    border: 2px solid #f08f5b !important;
+    font-weight: 800;
+    border-radius: 10px;
+    transition: 0.25s ease;
+}
+
+.top-actions a.desktop-join:hover {
+    background: #ffad7c !important;
+    border-color: #ffad7c !important;
+    transform: translateY(-2px);
+}
+
+/* MEMBER AREA - OUTLINED */
+.top-actions a.nav-member {
+    background: transparent !important;
+    color: #ffffff !important;
+    border: 2px solid #414854 !important;
+    font-weight: 700;
+    border-radius: 10px;
+    transition: 0.25s ease;
+}
+
+.top-actions a.nav-member:hover {
+    border-color: #f08f5b !important;
+    color: #ffad7c !important;
+}

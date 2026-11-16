@@ -50,3 +50,35 @@
 
 }
 
+/* =====================================
+   APEX MEMBER AREA HIGHLIGHT
+===================================== */
+
+.desktop-nav .nav-member {
+    color: #ffffff;
+    background: rgba(240, 143, 91, 0.16);
+    border: 1px solid rgba(240, 143, 91, 0.65);
+    border-radius: 9px;
+    padding: 9px 14px;
+    font-weight: 800;
+    transition: all 0.25s ease;
+}
+
+.desktop-nav .nav-member:hover {
+    background: #f08f5b;
+    border-color: #f08f5b;
+    color: #101318;
+    transform: translateY(-2px);
+}
+
+/* Keep Member Area highlighted on mobile */
+
+.mobile-drawer a.nav-member {
+    color: #ffad7c;
+    font-weight: 800;
+    background: rgba(240, 143, 91, 0.10);
+    border: 1px solid rgba(240, 143, 91, 0.35);
+    border-radius: 9px;
+    padding: 14px;
+    margin-top: 8px;
+}

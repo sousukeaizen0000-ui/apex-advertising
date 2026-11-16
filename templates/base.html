@@ -8,18 +8,15 @@
 
     <title>{% block title %}Apex Advertising{% endblock %}</title>
 
-    <!-- Favicon -->
     <link rel="icon" type="image/png"
           href="{{ url_for('static', filename='images/apex-logo.png') }}">
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
           rel="stylesheet">
 
-    <!-- Main stylesheet -->
     <link rel="stylesheet"
           href="{{ url_for('static', filename='styles.css') }}">
 </head>
@@ -49,7 +46,7 @@
                 Discover
             </a>
 
-            <a class="nav-link"
+            <a class="nav-link nav-member"
                href="{{ url_for('dashboard') if current_user else url_for('login') }}">
                 Member area
             </a>
@@ -129,30 +126,22 @@
                 Helping communities find their next audience.
             </p>
 
-            <a href="https://discord.gg/ApexAD"
-               target="_blank"
-               rel="noopener noreferrer">
-                Join the Apex Community ↗
-            </a>
-
         </div>
 
         <div class="footer-bottom">
 
             <span>
-                © {{ current_year }} Apex Advertising.
+                © {{ current_year }} Apex Advertising. All rights reserved.
             </span>
 
             <div>
 
-                <a href="{{ url_for('terms') }}">Terms</a>
+                <a href="{{ url_for('terms') }}">
+                    Terms of Service
+                </a>
 
-                <a href="{{ url_for('privacy') }}">Privacy</a>
-
-                <a href="https://discord.gg/ApexAD"
-                   target="_blank"
-                   rel="noopener noreferrer">
-                    Discord
+                <a href="{{ url_for('privacy') }}">
+                    Privacy Policy
                 </a>
 
             </div>
@@ -163,8 +152,6 @@
 
 </div>
 
-
-<!-- JAVASCRIPT -->
 <script src="{{ url_for('static', filename='script.js') }}"></script>
 
 </body>

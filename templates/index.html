@@ -1,0 +1,637 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101318">
+  <meta name="description" content="Apex Advertising helps Discord gaming communities get discovered.">
+
+  <title>Apex Advertising — Get Your Community Seen</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+
+<div class="site-shell">
+
+  <!-- HEADER -->
+
+  <header class="topbar">
+
+    <a class="brand" href="#home" aria-label="Apex Advertising home">
+
+      <img
+        class="brand-logo"
+        src="{{ url_for('static', filename='images/apex-logo.png') }}"
+        alt="Apex Advertising"
+      >
+
+      <span>
+        APEX<span class="brand-muted"> ADVERTISING</span>
+      </span>
+
+    </a>
+
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a class="nav-link active" href="#home">Home</a>
+      <a class="nav-link" href="#discover">Discover</a>
+      <a class="nav-link" href="#how">How it works</a>
+      <a class="nav-link" href="#promotions">Promotions</a>
+    </nav>
+
+    <div class="top-actions">
+
+      <a class="button button-quiet desktop-login"
+         href="{{ url_for('dashboard') if current_user else url_for('login') }}">
+        Member area
+      </a>
+
+      <a class="button button-primary desktop-join" href="#contact">
+        Join Apex <span>↗</span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle"
+              aria-label="Open navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <!-- MOBILE NAVIGATION -->
+
+  <aside class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+
+    <div class="drawer-head">
+      <span class="eyebrow">NAVIGATION</span>
+      <button id="closeDrawer" class="icon-button"
+              aria-label="Close navigation">✕</button>
+    </div>
+
+    <a href="#home">Home <span>↗</span></a>
+    <a href="#discover">Discover communities <span>↗</span></a>
+    <a href="#how">How it works <span>↗</span></a>
+    <a href="#promotions">Premium promotions <span>↗</span></a>
+
+    <a href="{{ url_for('dashboard') if current_user else url_for('login') }}">
+      Member dashboard <span>↗</span>
+    </a>
+
+    <a href="#legal">Legal centre <span>↗</span></a>
+
+    <a class="button button-primary drawer-join"
+       href="{{ url_for('login') }}">
+      Join Apex ↗
+    </a>
+
+  </aside>
+
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+
+
+  <main id="home">
+
+    <!-- HERO -->
+
+    <section class="hero section-wrap">
+
+      <div class="hero-copy reveal">
+
+        <div class="status-pill">
+          <span class="status-dot"></span>
+          THE COMMUNITY ADVERTISING NETWORK
+        </div>
+
+        <p class="eyebrow orange">
+          BUILT FOR COMMUNITIES THAT WANT TO GROW
+        </p>
+
+        <h1>
+          Your community.<br>
+          <span>Your audience.</span><br>
+          Your next level.
+        </h1>
+
+        <p class="hero-description">
+          Put your Discord community in the spotlight.
+          Discover new places to play, connect, and build
+          something worth joining.
+        </p>
+
+        <div class="hero-actions">
+
+          <a class="button button-primary button-large" href="#discover">
+            Explore communities <span>↗</span>
+          </a>
+
+          <a class="button button-outline button-large" href="#how">
+            How it works
+          </a>
+
+        </div>
+
+        <div class="hero-note">
+          <span class="tiny-check">✓</span>
+          Standard server advertising is free ·
+          24-hour cooldown per server
+        </div>
+
+      </div>
+
+
+      <!-- HERO GRAPHIC -->
+
+      <div class="hero-art reveal delay-1">
+
+        <div class="art-glow"></div>
+        <div class="art-ring ring-one"></div>
+        <div class="art-ring ring-two"></div>
+
+        <div class="art-card">
+
+          <div class="art-card-top">
+            <span class="brand-mark small">A</span>
+            <span class="live-label"><i></i> APEX NETWORK</span>
+          </div>
+
+          <div class="art-symbol">A<span>/</span></div>
+
+          <div class="art-card-bottom">
+            <span>GET DISCOVERED</span>
+            <strong>01 — 24H</strong>
+          </div>
+
+        </div>
+
+        <div class="float-chip chip-top">
+          <span class="chip-icon">✦</span>
+          <span>
+            <b>Free advertising</b>
+            <small>Open to communities</small>
+          </span>
+        </div>
+
+        <div class="float-chip chip-bottom">
+          <span class="chip-icon orange-chip">↗</span>
+          <span>
+            <b>More visibility</b>
+            <small>Optional promotions</small>
+          </span>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- TRUST STRIP -->
+
+    <section class="trust-strip section-wrap reveal">
+
+      <span>MADE FOR DISCORD COMMUNITIES</span>
+      <span class="trust-line"></span>
+      <span class="trust-item">GAMING</span>
+      <span class="trust-item">ROLEPLAY</span>
+      <span class="trust-item">CREATORS</span>
+      <span class="trust-item">COMMUNITY</span>
+
+    </section>
+
+
+    <!-- HOW IT WORKS -->
+
+    <section class="feature-section section-wrap" id="how">
+
+      <div class="section-heading reveal">
+
+        <div>
+          <p class="eyebrow orange">SIMPLE BY DESIGN</p>
+
+          <h2>
+            Everything starts<br>
+            with <span class="muted-heading">being seen.</span>
+          </h2>
+        </div>
+
+        <p>
+          Whether you're sharing a new roleplay server or finding
+          your next gaming group, Apex makes discovery straightforward.
+        </p>
+
+      </div>
+
+
+      <div class="feature-grid">
+
+        <article class="feature-card reveal">
+
+          <div class="feature-icon">⌁</div>
+          <span class="card-index">01 / ADVERTISE</span>
+
+          <h3>Share your server</h3>
+
+          <p>
+            Post your community in the right advertising category
+            and introduce it to people looking for somewhere new.
+          </p>
+
+          <a href="{{ url_for('login') }}" class="text-link">
+            Get started <span>↗</span>
+          </a>
+
+        </article>
+
+
+        <article class="feature-card reveal delay-1">
+
+          <div class="feature-icon">◎</div>
+          <span class="card-index">02 / DISCOVER</span>
+
+          <h3>Find your people</h3>
+
+          <p>
+            Explore community listings and find gaming, roleplay,
+            and other Discord communities that interest you.
+          </p>
+
+          <a href="#discover" class="text-link">
+            Browse communities <span>↗</span>
+          </a>
+
+        </article>
+
+
+        <article class="feature-card reveal delay-2">
+
+          <div class="feature-icon">✳</div>
+          <span class="card-index">03 / PROMOTE</span>
+
+          <h3>Choose more reach</h3>
+
+          <p>
+            Optional paid promotional placements are available
+            under clear pricing and staff-approved rules.
+          </p>
+
+          <a href="#promotions" class="text-link">
+            View promotions <span>↗</span>
+          </a>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- DISCOVER -->
+
+    <section class="discover-section section-wrap" id="discover">
+
+      <div class="section-heading reveal">
+
+        <div>
+          <p class="eyebrow orange">FIND YOUR NEXT COMMUNITY</p>
+
+          <h2>
+            Discover what’s<br>
+            <span class="muted-heading">out there.</span>
+          </h2>
+        </div>
+
+        <a href="{{ url_for('login') }}" class="button button-outline">
+          Advertise your server ↗
+        </a>
+
+      </div>
+
+
+      <div class="discover-toolbar reveal">
+
+        <div class="search-wrap">
+          <span>⌕</span>
+          <input id="searchInput" type="search"
+                 placeholder="Search communities..."
+                 aria-label="Search communities">
+        </div>
+
+        <div class="filter-wrap">
+
+          <button class="filter-button active" data-filter="all">All</button>
+          <button class="filter-button" data-filter="roleplay">Roleplay</button>
+          <button class="filter-button" data-filter="gaming">Gaming</button>
+          <button class="filter-button" data-filter="community">Community</button>
+
+        </div>
+
+      </div>
+
+
+      <div class="community-grid" id="communityGrid">
+
+        {% for listing in listings %}
+
+        <article class="community-card reveal"
+                 data-category="{{ listing.category|lower }}"
+                 data-name="{{ listing.server_name|e }}">
+
+          <div class="community-cover cover-one">
+            <span>{{ listing.server_name[:2]|upper }}</span>
+            <small>{{ listing.category|upper }}</small>
+          </div>
+
+          <div class="community-info">
+
+            <div class="community-title">
+              <h3>{{ listing.server_name }}</h3>
+              <span class="tag">{{ listing.category|upper }}</span>
+            </div>
+
+            <p>{{ listing.description }}</p>
+
+            <div class="community-meta">
+              <span>Discord community</span>
+
+              <a class="save-button"
+                 href="{{ listing.invite_url }}"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                Join ↗
+              </a>
+            </div>
+
+          </div>
+
+        </article>
+
+        {% else %}
+
+        <div class="empty-state">
+          <h3>Be among the first to be discovered.</h3>
+          <p>Approved community advertisements will appear here.</p>
+
+          <a class="button button-primary" href="{{ url_for('login') }}">
+            Submit your server ↗
+          </a>
+        </div>
+
+        {% endfor %}
+
+      </div>
+
+    </section>
+
+
+    <!-- PROMOTIONS -->
+
+    <section class="promotion-section section-wrap" id="promotions">
+
+      <div class="promotion-panel reveal">
+
+        <div class="promotion-copy">
+
+          <p class="eyebrow orange">OPTIONAL EXTRA VISIBILITY</p>
+
+          <h2>
+            Make your next<br>
+            announcement <span>stand out.</span>
+          </h2>
+
+          <p>
+            Standard advertising remains free. Communities can
+            optionally request approved promotional services,
+            such as an authorized @here or @everyone announcement.
+          </p>
+
+          <a href="{{ url_for('login') }}" class="button button-primary">
+            Ask about promotions ↗
+          </a>
+
+          <small>
+            Promotional pings are staff-controlled.
+            Pricing and terms are provided before purchase.
+          </small>
+
+        </div>
+
+
+        <div class="promotion-visual">
+
+          <div class="promo-orbit orbit-a"></div>
+          <div class="promo-orbit orbit-b"></div>
+
+          <div class="promo-core">A<span>+</span></div>
+
+          <div class="promo-caption">
+            OPTIONAL<br>AMPLIFICATION
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- MEMBER AREA -->
+
+    <section class="dashboard-section section-wrap" id="dashboard">
+
+      <div class="section-heading reveal">
+
+        <div>
+          <p class="eyebrow orange">YOUR APEX SPACE</p>
+
+          <h2>
+            A little more<br>
+            <span class="muted-heading">personal.</span>
+          </h2>
+        </div>
+
+        <p>
+          Sign in securely with Discord to submit communities
+          and follow every review.
+        </p>
+
+      </div>
+
+
+      <div class="dashboard-preview reveal">
+
+        <div class="dash-main" style="width:100%">
+
+          <div class="dash-welcome">
+
+            <div>
+
+              <span class="eyebrow">MEMBER AREA</span>
+
+              <h3>
+                {% if current_user %}
+                  Welcome back, {{ current_user.username }}.
+                {% else %}
+                  Your community, in one place.
+                {% endif %}
+              </h3>
+
+              <p>
+                Manage your server advertisements from your
+                member dashboard.
+              </p>
+
+            </div>
+
+            <span class="dash-pill">
+              DISCORD CONNECTED
+              {% if not current_user %} · SIGN IN REQUIRED{% endif %}
+            </span>
+
+          </div>
+
+
+          <div class="dash-stats">
+
+            <div>
+              <small>ADVERTISING</small>
+              <strong>Free</strong>
+            </div>
+
+            <div>
+              <small>STANDARD COOLDOWN</small>
+              <strong>24h</strong>
+            </div>
+
+            <div>
+              <small>REVIEW</small>
+              <strong>Staff checked</strong>
+            </div>
+
+          </div>
+
+
+          <div class="saved-panel">
+
+            <div class="saved-head">
+              <b>Ready to get started?</b>
+
+              <a href="{{ url_for('dashboard') if current_user else url_for('login') }}">
+                Open member area ↗
+              </a>
+            </div>
+
+            <p>
+              Connect your Discord account to submit your server,
+              view its status, and update your listing.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CALL TO ACTION -->
+
+    <section class="cta-section section-wrap" id="contact">
+
+      <div class="cta-box reveal">
+
+        <p class="eyebrow orange">READY TO GET STARTED?</p>
+
+        <h2>
+          Bring your community<br>
+          <span>into the spotlight.</span>
+        </h2>
+
+        <p>
+          Join Apex Advertising and connect with communities
+          across Discord.
+        </p>
+
+        <div class="hero-actions">
+
+          <a class="button button-primary button-large"
+             href="{{ url_for('login') }}">
+            Continue with Discord ↗
+          </a>
+
+          <a class="button button-outline button-large"
+             href="{{ url_for('login') }}">
+            Member dashboard
+          </a>
+
+        </div>
+
+        <small>
+          Discord authentication is required for member features.
+        </small>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer class="footer section-wrap" id="legal">
+
+    <div class="footer-top">
+
+      <a class="brand footer-brand" href="#home">
+
+        <img
+          class="brand-logo footer-logo"
+          src="{{ url_for('static', filename='images/apex-logo.png') }}"
+          alt="Apex Advertising Logo"
+        >
+
+        <span>
+          APEX<span class="brand-muted"> ADVERTISING</span>
+        </span>
+
+      </a>
+
+      <p>Helping communities find their next audience.</p>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+      <span>
+        © <span id="year"></span> Apex Advertising.
+        All rights reserved.
+      </span>
+
+      <div>
+        <a href="{{ url_for('terms') }}">Terms of Service</a>
+        <a href="{{ url_for('privacy') }}">Privacy Policy</a>
+        <a href="#how">Advertising Rules</a>
+      </div>
+
+    </div>
+
+  </footer>
+
+</div>
+
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

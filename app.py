@@ -3,6 +3,7 @@ import os
 import re
 import secrets
 import sqlite3
+import math
 
 from datetime import datetime, timedelta, timezone
 from functools import wraps
@@ -139,6 +140,67 @@ init_db()
 
 def now_iso():
     return datetime.now(timezone.utc).isoformat()
+
+
+# ==========================================
+# DISCORD RATE LIMIT HANDLING
+# ==========================================
+
+def discord_rate_limit_response(response, stage):
+    """
+    Return a temporary-unavailability response when Discord
+    rate-limits an OAuth request.
+
+    Does not automatically retry the request.
+    """
+
+    try:
+        data = response.json()
+    except ValueError:
+        data = {}
+
+    retry_after = data.get("retry_after")
+
+    if retry_after is None:
+        retry_after = response.headers.get("Retry-After", 60)
+
+    try:
+        retry_seconds = max(
+            1,
+            math.ceil(float(retry_after))
+        )
+    except (TypeError, ValueError):
+        retry_seconds = 60
+
+    scope = response.headers.get(
+        "X-RateLimit-Scope",
+        "unknown"
+    )
+
+    app.logger.warning(
+        "Discord rate limit during %s. "
+        "HTTP 429. Scope: %s. Retry after: %s seconds.",
+        stage,
+        scope,
+        retry_seconds
+    )
+
+    return (
+        render_template(
+            "message.html",
+            title="Discord temporarily unavailable",
+            message=(
+                "Discord is temporarily limiting sign-in requests. "
+                f"Please wait at least {retry_seconds} seconds "
+                "before trying again. If the problem continues, "
+                "please try again later."
+            )
+        ),
+        503,
+        {
+            "Retry-After": str(retry_seconds)
+        }
+    )
 
 
 # ==========================================
@@ -378,6 +440,15 @@ def auth_callback():
             "Could not connect to Discord. Please try again."
         )
 
+    # Handle rate limits before other HTTP errors
+
+    if token_response.status_code == 429:
+
+        return discord_rate_limit_response(
+            token_response,
+            "OAuth token exchange"
+        )
+
     if not token_response.ok:
 
         app.logger.error(
@@ -420,6 +491,13 @@ def auth_callback():
             },
             timeout=20
         )
+
+        if profile_response.status_code == 429:
+
+            return discord_rate_limit_response(
+                profile_response,
+                "profile retrieval"
+            )
 
         if not profile_response.ok:
 

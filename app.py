@@ -353,6 +353,14 @@ def terms():
 def privacy():
     return render_template("privacy.html")
 
+@app.get("/bot/terms")
+def bot_terms():
+    return render_template("bot_terms.html")
+
+
+@app.get("/bot/privacy")
+def bot_privacy():
+    return render_template("bot_privacy.html")
 
 # ==========================================
 # DISCORD LOGIN
